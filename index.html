@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radhika Pramod Banginwar - Portfolio</title>
+    <title>Radhika Banginwar | HR Strategist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. Deep Space Dark Mode Background */
+        :root {
+            /* Updated for Dark Mode / Glassmorphism */
+            --text-dark: #f8fafc;
+            --text-light: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #f43f5e;
+            --accent-blue: #3b82f6;
+            --modal-bg: #0f172a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
             background: linear-gradient(-45deg, #0b0c10, #1f2833, #0a0a0a, #121212);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: #c5c6c7;
-            scroll-behavior: smooth;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex; flex-direction: column;
         }
 
         @keyframes gradientBG {
@@ -22,305 +36,768 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Persistent Navigation Bar */
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #ffffff; }
+        
+        h1, h2 { text-shadow: 0 0 10px rgba(255, 255, 255, 0.15); }
+
+        /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 20px; left: 50%;
+            transform: translateX(-50%);
             background: rgba(11, 12, 16, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 15px 0;
-            text-align: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px; border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex; gap: 15px; z-index: 1000;
+            border: 1px solid var(--glass-border);
         }
 
-        nav a {
-            color: #ffffff;
-            margin: 0 20px;
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+        nav button {
+            background: none; border: none; padding: 10px 20px;
+            border-radius: 30px; font-family: 'Outfit', sans-serif;
+            font-weight: 600; font-size: 1rem; color: var(--text-light);
+            cursor: pointer; transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            color: #66c0f4;
+        nav button.active { background: rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+
+        /* --- SINGLE PAGE LAYOUT --- */
+        .main-container {
+            padding: 120px 20px 20px;
+            max-width: 1000px; margin: 0 auto; flex: 1;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .scroll-section {
+            scroll-margin-top: 140px; 
         }
 
-        /* Layout Container */
-        .container {
-            max-width: 900px;
-            margin: 120px auto 50px;
-            padding: 20px;
-        }
-
-        /* 2. Floating Glass Cards & Sections */
-        .section-container, .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        /* --- GLASS CARDS --- */
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 40px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px; position: relative;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            padding: 35px;
-            margin-bottom: 40px;
         }
 
-        .section-container:hover, .glass-card:hover {
+        .glass-card:hover {
             transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 10px 40px rgba(100, 200, 255, 0.15); 
+            box-shadow: 0 10px 40px rgba(100, 200, 255, 0.1); 
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Typography & Neon Accents */
-        h1, h2, h3 {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            letter-spacing: 1px;
-        }
+        /* --- HERO --- */
+        .hero-header { text-align: center; margin-bottom: 40px; }
+        .img-wrapper { position: relative; display: inline-block; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,0.8); box-shadow: 0 15px 35px rgba(0,0,0,0.5); margin-bottom: 15px; animation: float 6s ease-in-out infinite; }
+        .voice-btn { position: absolute; bottom: 20px; right: -5px; background: #1e293b; border: 1px solid var(--glass-border); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.5); transition: all 0.3s ease; font-size: 1.2rem; z-index: 10; }
+        .voice-btn:hover { transform: scale(1.15); box-shadow: 0 12px 25px rgba(100,200,255,0.2); border-color: var(--accent-blue); }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
 
-        h2 {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
+        /* Clickable Name Styling */
+        .clickable-name { cursor: pointer; transition: 0.3s; display: inline-block; }
+        .clickable-name:hover { text-shadow: 0 0 20px rgba(100, 200, 255, 0.6); transform: scale(0.98); color: var(--accent-blue); }
 
-        p {
-            line-height: 1.6;
-            color: #d3d3d3;
-        }
+        .status-pill { display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-top: 10px; border: 1px solid var(--glass-border); color: #ffffff; }
+        .pulse-dot { height: 10px; width: 10px; background: #22c55e; border-radius: 50%; margin-right: 12px; animation: dotPulse 2s infinite; }
+        @keyframes dotPulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-        /* Profile Header (10% reduced size) */
-        .profile-header {
-            text-align: center;
-            margin-bottom: 60px;
-            transform: scale(0.9);
-        }
+        /* --- IMPACT COUNTERS --- */
+        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+        .counter-box { text-align: center; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 20px; border: 1px solid var(--glass-border); transition: 0.3s; }
+        .counter-box:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+        .counter-number { display: block; font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+        .counter-label { font-size: 0.8rem; color: var(--text-light); font-weight: 700; text-transform: uppercase; }
 
-        .profile-header h1 {
-            font-size: 2.8rem;
-            cursor: pointer;
-            display: inline-block;
-            transition: text-shadow 0.3s ease;
-        }
+        /* --- TOGGLE --- */
+        .lens-container { display: flex; justify-content: center; align-items: center; margin-bottom: 30px; gap: 20px; }
+        .toggle-switch { position: relative; width: 70px; height: 35px; background: #334155; border-radius: 50px; cursor: pointer; border: 1px solid var(--glass-border); }
+        .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 4px; width: 27px; height: 27px; background: white; border-radius: 50%; transition: 0.3s; }
+        .toggle-active .toggle-switch { background: var(--accent); border-color: var(--accent); }
+        .toggle-active .toggle-switch::after { left: 37px; }
+        .lens-label { font-weight: 800; font-size: 0.95rem; color: var(--text-light); transition: 0.3s; }
+        .lens-active { color: var(--text-dark); transform: scale(1.1); text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        .highlight-strategy, .highlight-empathy { transition: all 0.4s ease; padding: 2px 4px; border-radius: 4px; }
+        .active-strategy { background: rgba(59, 130, 246, 0.2); color: #93c5fd; font-weight: 600; }
+        .active-empathy { background: rgba(244, 63, 94, 0.2); color: #fda4af; font-weight: 600; }
 
-        .profile-header h1:hover {
-            text-shadow: 0 0 20px rgba(100, 200, 255, 0.6);
-        }
+        /* --- STATS GRID --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .stat-box { background: rgba(255,255,255,0.02); padding: 40px 20px; border-radius: 24px; text-align: center; border: 1px solid var(--glass-border); }
+        .stat-box h3 { font-size: 2.2rem; color: var(--accent); font-weight: 800; margin-bottom: 10px; }
+        .stat-box p { font-size: 1.1rem; line-height: 1.4; color: var(--text-light); }
+        .clickable-box { cursor: pointer; transition: 0.3s; }
+        .clickable-box:hover { transform: translateY(-8px); border-color: var(--accent-blue); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); }
 
-        .status-pill {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
+        /* --- INTERACTIVE TIMELINE --- */
+        .interactive-timeline { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; position: relative; padding-bottom: 40px; }
+        .interactive-timeline::before { content: ''; position: absolute; left: 38px; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--accent-blue), var(--accent)); border-radius: 4px; }
+        
+        .timeline-node { display: flex; align-items: center; gap: 30px; cursor: pointer; transition: 0.3s; position: relative; z-index: 2; padding: 25px; background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .timeline-node:hover { transform: translateX(10px); border-color: var(--accent-blue); background: rgba(255,255,255,0.08); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        
+        .node-dot { width: 80px; height: 80px; background: #121212; border: 4px solid var(--accent-blue); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #66c0f4; transition: 0.3s; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); margin-left: -5px; font-size: 1.2rem; }
+        .timeline-node:hover .node-dot { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 0 20px rgba(244, 63, 94, 0.4); transform: scale(1.1); }
+        
+        .node-content { flex: 1; }
+        .node-content h3 { font-size: 2.2rem; color: var(--text-dark); margin-bottom: 5px; font-weight: 800; font-family: 'Outfit'; letter-spacing: -0.5px; }
+        .node-content h4 { font-size: 1.3rem; color: var(--text-light); margin-bottom: 5px; font-weight: 600; }
+        .node-date { font-size: 1rem; color: var(--accent-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .node-action { font-size: 1rem; font-weight: 800; color: var(--accent); margin-top: 15px; display: inline-block; transition: 0.3s; background: rgba(244,63,94,0.1); padding: 8px 20px; border-radius: 50px; border: 1px solid rgba(244,63,94,0.2); text-decoration: none; }
+        .timeline-node:hover .node-action, .glass-card:hover .node-action { transform: translateX(5px); background: var(--accent); color: white; }
 
-        .stats {
-            margin-top: 25px;
-            font-size: 1.2rem;
-            color: #ffffff;
-        }
+        /* --- DEEP IMPACT MODALS --- */
+        .impact-modal .modal-content { max-width: 900px; padding: 60px; text-align: left; }
+        .impact-header { margin-bottom: 30px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; }
+        .impact-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 5px; font-family: 'Outfit'; letter-spacing: -1px; }
+        .impact-header h3 { font-size: 1.6rem; color: var(--accent-blue); font-weight: 700; }
+        .impact-header .modal-date { font-weight: 800; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; display: block; }
+        
+        .reflection-block { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border-left: 5px solid var(--accent-blue); margin-bottom: 35px; border-top: 1px solid var(--glass-border); border-right: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .reflection-block p { font-size: 1.15rem; line-height: 1.7; color: #e2e8f0; font-style: italic; }
+        
+        .impact-list { list-style: none; padding: 0; }
+        .impact-list li { font-size: 1.15rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 20px; position: relative; padding-left: 35px; }
+        .impact-list li::before { content: '✦'; position: absolute; left: 0; top: 0; color: var(--accent); font-size: 1.4rem; line-height: 1.5; }
+        .impact-list b { color: #ffffff; font-weight: 800; }
+        .impact-list a { color: #66c0f4; text-decoration: none; font-weight: 800; transition: 0.3s; }
+        .impact-list a:hover { color: var(--accent); }
 
-        /* Toggle Button */
-        .toggle-btn {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
+        /* --- MODALS --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; opacity: 0; transition: 0.4s; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content { background: var(--modal-bg); width: 100%; max-width: 800px; border-radius: 30px; padding: 50px; position: relative; transform: translateY(30px); transition: 0.4s; max-height: 85vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-btn { position: absolute; top: 25px; right: 25px; border: none; background: none; font-size: 2.2rem; cursor: pointer; color: var(--text-light); transition: 0.3s; z-index: 10; }
+        .close-btn:hover { color: var(--accent); transform: scale(1.1); }
+        
+        .skill-category { margin-bottom: 25px; text-align: left; }
+        .skill-category h4 { color: #ffffff; margin-bottom: 10px; font-size: 1.2rem; font-weight: 800;}
+        .skill-category p { color: var(--text-light); }
 
-        .toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+        /* --- CONTACT MODAL STYLE --- */
+        .connect-links { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        .connect-option { background: rgba(255,255,255,0.03); color: var(--text-dark); text-decoration: none; padding: 20px; border-radius: 24px; border: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .connect-option:hover { border-color: var(--accent); background: rgba(255,255,255,0.08); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); color: var(--accent); }
+        .connect-title { font-weight: 800; font-size: 1.3rem; }
+        .connect-sub { font-size: 0.95rem; color: var(--text-light); font-weight: 500; }
 
-        /* Gallery Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
+        /* --- GALLERY CAROUSEL STYLES --- */
+        .carousel-section { margin-bottom: 40px; }
+        .carousel-section h3 { font-size: 1.8rem; margin-bottom: 5px; font-weight: 800; color: var(--text-dark); }
+        .carousel-section p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 20px; }
+        .carousel-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; scroll-behavior: smooth; align-items: center; }
+        .carousel-container::-webkit-scrollbar { height: 8px; }
+        .carousel-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .carousel-container::-webkit-scrollbar-thumb { background: var(--text-light); border-radius: 10px; }
+        
+        .carousel-item { flex: 0 0 auto; height: 250px; border-radius: 16px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 15px rgba(0,0,0,0.3); background: transparent; }
+        .carousel-item:hover { transform: scale(1.03); border-color: var(--accent); box-shadow: 0 15px 25px rgba(0,0,0,0.5); }
+        .carousel-item img { height: 100%; width: auto; display: block; transition: 0.3s; }
+        
+        /* --- LIGHTBOX SPECIFIC STYLE --- */
+        #modal-lightbox .modal-content { background: transparent; border: none; box-shadow: none; padding: 0; display: flex; justify-content: center; align-items: center; }
+        #modal-lightbox img { max-width: 100%; max-height: 85vh; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        #modal-lightbox .close-btn { color: white; right: 0; top: -50px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
-        .gallery-item {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            color: #ffffff;
-        }
+        /* --- VIT PUNE INTERACTIVE LINKS --- */
+        .vit-circle-wrapper { display: flex; flex-direction: column; align-items: center; text-align: center; width: 120px; }
+        .vit-circle-btn { width: 75px; height: 75px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 2px solid var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); color: var(--accent-blue); }
+        .vit-circle-btn:hover { background: var(--accent-blue); color: white; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4); }
+        .vit-links-container { display: flex; gap: 25px; max-height: 0; opacity: 0; overflow: hidden; transform: translateY(-10px); transition: all 0.4s ease; justify-content: center; }
+        .vit-links-container.show { opacity: 1; max-height: 200px; transform: translateY(0); padding-top: 15px; margin-bottom: 25px; }
+        
+        /* GLOW EFFECT SYSTEM */
+        .vit-toggle-text { cursor: pointer; font-weight: 800; color: var(--text-dark); font-size: 1.15rem; display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: rgba(255,255,255,0.05); border-radius: 50px; border: 1px solid var(--glass-border); transition: 0.3s; animation: buttonGlowPulse 2.5s infinite; }
+        @keyframes buttonGlowPulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.2); } 50% { box-shadow: 0 0 20px 6px rgba(59, 130, 246, 0.1); border-color: var(--accent-blue); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.2); } }
+        .vit-toggle-text:hover { color: var(--accent-blue); transform: translateY(-2px); animation-play-state: paused; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3); border-color: var(--accent-blue); }
+        .vit-toggle-text .arrow { transition: 0.3s; }
+        .vit-toggle-text.active .arrow { transform: rotate(180deg); }
 
-        /* Action Links */
-        .action-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #66c0f4;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid transparent;
-            transition: border-bottom 0.3s;
-        }
-
-        .action-link:hover {
-            border-bottom: 1px solid #66c0f4;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: #1f2833;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .modal-content p {
-            margin: 10px 0;
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-
-        .close-btn {
-            cursor: pointer;
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: #ffffff;
-        }
+        footer { text-align: center; padding: 60px 20px 80px; margin-top: auto; }
+        .contact-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 18px 50px; font-size: 1.1rem; font-weight: 800; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .contact-btn:hover { background: var(--accent-blue); border-color: var(--accent-blue); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4); }
     </style>
 </head>
 <body>
 
-    <!-- Persistent Navigation -->
     <nav>
-        <a href="#approach">The Approach</a>
-        <a href="#gallery">Visual Impact</a>
-        <a href="#future">Future Focus</a>
-        <a href="#leadership">Leadership & Mentorship</a>
+        <button class="nav-btn active" onclick="scrollToSection('section-profile')">Profile</button>
+        <button class="nav-btn" onclick="scrollToSection('section-corporate')">Corporate Impact</button>
+        <button class="nav-btn" onclick="scrollToSection('section-leadership')">Leadership & Mentorship</button>
+        <button class="nav-btn" onclick="scrollToSection('section-visual')">Visual Impact</button>
     </nav>
 
-    <div class="container">
+    <main class="main-container" id="main-content">
         
-        <!-- Header Section -->
-        <div class="profile-header">
-            <h1 onclick="openModal()">Radhika Pramod Banginwar</h1>
-            <div class="status-pill">Exploring AI in HR Workflows</div>
-            <div class="stats"><strong>Hires</strong></div>
-            <!-- Microphone icon placeholder -->
-            <div style="margin-top: 20px; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <svg width="24" height="24" fill="#ffffff" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-            </div>
-        </div>
-
-        <!-- Section 1 -->
-        <div id="approach" class="section-container">
-            <h2>The Approach & Operating Blueprint</h2>
-            <p>Utilizing fearless empathy, strategic preparation, and data-backed decision-making to scale high-performing teams and transform organizational cultures.</p>
-            <button class="toggle-btn" onclick="togglePerspective()">Human Empathy / Analytical Strategy</button>
-        </div>
-
-        <!-- Section 2 -->
-        <div id="gallery" class="section-container">
-            <h2>Visual Impact & Culture</h2>
-            <div class="grid">
-                <div class="gallery-item">Culture Initiatives & Onboarding</div>
-                <div class="gallery-item">Talent Architecture & Social Impact</div>
-                <div class="gallery-item">Cross-Functional Collaboration</div>
-                <div class="gallery-item">Global Hosting & Stakeholder Management</div>
-            </div>
-        </div>
-
-        <!-- Section 3 -->
-        <div id="future" class="section-container">
-            <h2>Ongoing Exploration & Future Focus</h2>
-            <p>Dedicated to exploring the intersection of Human Resources and Artificial Intelligence, specifically focusing on how agentic workflows can drive HR technology transformation.</p>
-        </div>
-
-        <!-- Section 4: Leadership & Mentorship (New Additions) -->
-        <div id="leadership" class="section-container" style="background: transparent; border: none; box-shadow: none; padding: 0;">
-            <h2 style="padding: 0 35px;">Leadership & Mentorship</h2>
-            
-            <!-- Podcast Feature Card -->
-            <div class="glass-card" style="margin-top: 20px;">
-                <h3>Podcast Feature: Measuring over Hierarchies</h3>
-                <p>Joined Antonio Giugno on the Kumo HR podcast for a comprehensive ~38-minute conversation challenging traditional workplace hierarchies. This session breaks down the importance of abandoning outdated power structures in favor of data-backed measurements and transparent talent architecture.</p>
-                <!-- Update the href below with your actual YouTube link -->
-                <a href="#" class="action-link" target="_blank">Watch the Full Episode</a>
+        <section id="section-profile" class="scroll-section">
+            <div class="glass-card hero-header" style="background: transparent; border: none; box-shadow: none;">
+                <div class="img-wrapper">
+                    <img src="WhatsApp Image 2026-05-10 at 7.16.53 PM (1).jpeg.jpeg" alt="Radhika Banginwar" class="profile-img">
+                    <div class="voice-btn" onclick="openModal('modal-voice')">🎙️</div>
+                </div>
+                <br>
+                <h1 class="clickable-name" onclick="openModal('modal-contact')" style="font-size: 3.1rem; letter-spacing: -1.2px; margin-bottom: 5px;">Radhika Banginwar</h1>
+                <h2 style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 12px; border: none;">HR Strategist & Culture Architect</h2>
+                <div class="status-pill"><span class="pulse-dot"></span>Exploring AI in HR Workflows</div>
             </div>
 
-            <!-- Volunteering Certificate Card -->
+            <div class="counter-grid">
+                <div class="counter-box"><span class="counter-number" data-target="3500">0</span><span class="counter-label">Hires</span></div>
+                <div class="counter-box"><span class="counter-number" data-target="5000">0</span><span class="counter-label">Students Mentored</span></div>
+                <div class="counter-box"><span class="counter-number" data-target="55">0</span><span class="counter-label">Team Members Led</span></div>
+            </div>
+
             <div class="glass-card">
-                <h3>Community Impact: Animal Rescue Volunteering</h3>
-                <p>Committed to maintaining fearless empathy both inside and outside the boardroom. This certification recognizes ongoing, hands-on volunteer work in animal rescue operations and community advocacy.</p>
-                <!-- Update the href below with the actual file path to your certificate image (e.g., certificate.jpg) -->
-                <a href="#" class="action-link" target="_blank">View Certification</a>
-            </div>
-        </div>
+                <div class="lens-container" id="lensToggle">
+                    <span class="lens-label lens-active" id="labelEmpathy">Human Empathy</span>
+                    <div class="toggle-switch" onclick="toggleLens()"></div>
+                    <span class="lens-label" id="labelStrategy">Analytical Strategy</span>
+                </div>
 
+                <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 800;">The Approach & Operating Blueprint</h3>
+                <p style="font-size: 1.15rem; line-height: 1.7;">I build workforce infrastructure for global scale. My career is defined by <span class="highlight-strategy">relentless, self-directed drive</span>. Through <span class="highlight-strategy">intense preparation leveraging industry data resources</span>, I aggressively shaped my presence to secure early placement.</p>
+                <br>
+                <p style="font-size: 1.15rem; line-height: 1.7;">Often the youngest voice at leadership tables, I transitioned into strategic managerial roles. I have <span class="highlight-strategy">directed 55+ member teams and bulk-hiring for 3,500+ employees</span>, while actively <span class="highlight-empathy">mentoring cohorts of talent</span>. This shaped my approach: bridging <span class="highlight-empathy">people-first empathy</span> with <span class="highlight-strategy">data-driven business impact</span>.</p>
+                <br>
+                <p style="font-size: 1.15rem; line-height: 1.7;">Whether <span class="highlight-strategy">architecting plants in Brazil</span> or <span class="highlight-empathy">empowering 5,000+ students to bypass hiring friction</span>, my mission is: ecosystems where people and businesses thrive. Now based in the US, I ensure every <span class="highlight-empathy">people initiative</span> directly <span class="highlight-strategy">drives the bottom line</span>.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h3>MBA</h3>
+                        <p>HR & Business Analytics<br>MIT WPU School of Business</p>
+                    </div>
+                    <div class="stat-box clickable-box" onclick="openModal('modal-awards')">
+                        <h3>Recognition & Awards</h3>
+                        <p>AkzoNobel Dream Team<br>CSR & Mentorship <b>(Click to View)</b></p>
+                    </div>
+                    <div class="stat-box clickable-box" onclick="openModal('modal-skills')">
+                        <h3>Expertise</h3>
+                        <p>Core Competencies &<br>Tech Toolkit <b>(Click to View)</b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 100px;"></div>
+
+        <section id="section-corporate" class="scroll-section">
+            <h2 style="font-size: 2.8rem; margin-bottom: 10px; font-weight: 800; text-align: center; border: none;">Corporate Impact</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-light); margin-bottom: 50px;">A transparent look at global scalability, HR architecture, and organizational design.</p>
+
+            <div class="interactive-timeline">
+                <div class="timeline-node" onclick="openModal('modal-akzo')">
+                    <div class="node-dot">01</div>
+                    <div class="node-content">
+                        <div class="node-date">Sept 2024 - Feb 2025</div>
+                        <h3>AkzoNobel GBS</h3>
+                        <h4>Human Resources Business Partner</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+
+                <div class="timeline-node" onclick="openModal('modal-bajaj')">
+                    <div class="node-dot">02</div>
+                    <div class="node-content">
+                        <div class="node-date">Sept 2023 - Aug 2024</div>
+                        <h3>Bajaj Auto Ltd.</h3>
+                        <h4>HR Manager</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+
+                <div class="timeline-node" onclick="openModal('modal-salespin')">
+                    <div class="node-dot">03</div>
+                    <div class="node-content">
+                        <div class="node-date">May 2023 - Aug 2023</div>
+                        <h3>Salespin</h3>
+                        <h4>HR Intern (Founding HR Lead)</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+
+                <div class="timeline-node" onclick="openModal('modal-wings')">
+                    <div class="node-dot">04</div>
+                    <div class="node-content">
+                        <div class="node-date">Jan 2023 - Apr 2023</div>
+                        <h3>Wings Operations & Technologies Ltd</h3>
+                        <h4>HR Coordinator</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 100px;"></div>
+
+        <section id="section-leadership" class="scroll-section">
+            <h2 style="font-size: 2.8rem; margin-bottom: 10px; font-weight: 800; text-align: center; border: none;">Leadership & Mentorship</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-light); margin-bottom: 50px;">Ecosystem building from pre-revenue startups to empowering the next generation of engineers.</p>
+
+            <div class="interactive-timeline">
+                <div class="timeline-node" onclick="openModal('modal-vit')">
+                    <div class="node-dot">✦</div>
+                    <div class="node-content">
+                        <div class="node-date">Feb 2026</div>
+                        <h3>EDGE'26, VIT Pune</h3>
+                        <h4>Mentor - Group Discussion and Interview [HR/Tech]</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-node" onclick="openModal('modal-kraken')">
+                    <div class="node-dot">✦</div>
+                    <div class="node-content">
+                        <div class="node-date">May 2020 - July 2025</div>
+                        <h3>Kraken Habitat</h3>
+                        <h4>Co-Founder to Strategic HR Advisor</h4>
+                        <span class="node-action">View Impact Report ➔</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px;"></div>
+
+            <div class="glass-card" style="margin-bottom: 30px;">
+                <h3 style="font-size: 1.8rem; color: #ffffff; font-weight: 800; margin-bottom: 15px;">Podcast Feature: Measuring over Hierarchies</h3>
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px;">Joined Antonio Giugno on the Kumo HR podcast for a comprehensive ~38-minute conversation challenging traditional workplace hierarchies. This session breaks down the importance of abandoning outdated power structures in favor of data-backed measurements and transparent talent architecture.</p>
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_stop-protecting-hierarchies-start-measuring-share-7473964893218537472-zenR" class="node-action" target="_blank">Watch the Full Episode ➔</a>
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 60px;">
+                <h3 style="font-size: 1.8rem; color: #ffffff; font-weight: 800; margin-bottom: 15px;">Community Impact: Animal Rescue Volunteering</h3>
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px;">Committed to maintaining fearless empathy both inside and outside the boardroom. This certification recognizes ongoing, hands-on volunteer work in animal rescue operations and community advocacy.</p>
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_community-animalrescue-volunteering-ugcPost-7474678047938523136-MZm1" class="node-action" target="_blank">View Certification & Details ➔</a>
+            </div>
+
+            <div class="glass-card">
+                <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent-blue); font-weight: 800;">Ongoing Exploration & Future Focus</h3>
+                <p style="font-size: 1.1rem; line-height: 1.7;">My journey has always been about staying ahead of the curve. Currently, I am focused on the intersection of <b>Agentic AI and Human Resources</b>, exploring how autonomous agents and intelligent workflows can move HR from a reactive function to a predictive powerhouse.</p>
+                <br>
+                <p style="font-size: 1.1rem; line-height: 1.7;">As I establish my professional footprint in the United States, I am documenting my progression in real-time. My LinkedIn serves as an <b>open-source "learning lab"</b> where I regularly share insights on AI-driven organizational development, workforce psychology, and global talent trends. I am actively seeking collaborations and opportunities within the US tech and corporate sectors where I can apply my dual-market experience and AI-forward mindset to drive cultural and operational excellence.</p>
+                <br>
+                <p style="font-size: 1.1rem; font-weight: 800; color: var(--text-dark);">The Goal: To not just participate in the corporate world, but to help architect its next evolution.</p>
+                <p style="margin-top: 25px;"><a href="https://www.linkedin.com/in/radhika-banginwar/recent-activity/all/" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 800; font-size: 1.1rem;">Explore my latest insights on LinkedIn ➔</a></p>
+            </div>
+        </section>
+
+        <div style="margin-top: 100px;"></div>
+
+        <section id="section-visual" class="scroll-section">
+            <div class="glass-card">
+                <h2 style="font-size: 2.5rem; margin-bottom: 30px; font-weight: 800; border: none;">Visual Impact & Culture</h2>
+
+                <div class="carousel-section">
+                    <h3>Executive Presence & Corporate Recognition</h3>
+                    <p>Formal milestones, executive alignment, and boardroom recognition.</p>
+                    <div class="carousel-container">
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="00.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='00.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="88.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='88.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="99.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='99.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="hh.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='hh.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="77.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='77.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="rr.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='rr.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="qq.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='qq.jpeg';}"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-section">
+                    <h3>Talent Architecture & Social Impact</h3>
+                    <p>Frontline mentorship, coaching cohorts, and grassroots community CSR drives.</p>
+                    <div class="carousel-container">
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="33.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='33.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="11.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='11.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="22.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='22.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="gg.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='gg.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="aa.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='aa.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="bb.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='bb.jpeg';}"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-section">
+                    <h3>Culture Architecture & DEI Scalability</h3>
+                    <p>Driving engagement, townhalls, workshops, and the Women's Inspired Network (WIN).</p>
+                    <div class="carousel-container">
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="ee.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='ee.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="dd.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='dd.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="ff.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='ff.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="66.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='66.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="44.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='44.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="55.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='55.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="cc.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='cc.jpeg';}"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-section">
+                    <h3>Global Hosting & Stakeholder Management</h3>
+                    <p>Facilitating high-level international delegations and global executive leadership.</p>
+                    <div class="carousel-container">
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="oo.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='oo.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="mm.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='mm.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="ll.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='ll.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="pp.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='pp.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="nn.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='nn.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="kk.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='kk.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="ii.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='ii.jpeg';}"></div>
+                        <div class="carousel-item" onclick="openLightbox(this)"><img src="jj.jpg" loading="lazy" onerror="if(!this.dataset.retried){this.dataset.retried=true; this.src='jj.jpeg';}"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer><button class="contact-btn" onclick="openModal('modal-contact')">Let's Connect</button></footer>
+
+    <div class="modal-overlay impact-modal" id="modal-akzo" onclick="closeModalOutside(event, 'modal-akzo')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-akzo')">&times;</button>
+            <div class="impact-header">
+                <h2>AkzoNobel GBS</h2>
+                <h3>Strategic HR Business Partner</h3>
+                <span class="modal-date">Sept 2024 - Feb 2025</span>
+            </div>
+            
+            <div class="reflection-block">
+                <p><b>Personal Growth & Corporate Leadership:</b> AkzoNobel provided the canvas where I truly learned the art of organizational architecture. The sheer complexity of the environment challenged me to elevate my emotional intelligence and groom my executive leadership capabilities. By driving concurrent global initiatives, I significantly sharpened my managerial agility and capacity for high-level multitasking. Furthermore, commanding the stage during global Town Halls honed my public speaking presence, teaching me how to communicate vision with absolute confidence. Ultimately, it transformed my view of the corporate world, proving that the strongest business outcomes are always rooted in deeply supported people.</p>
+            </div>
+
+            <ul class="impact-list">
+                <li><b>Global HR Business Partnering:</b> Acted as the primary strategic HR partner for senior Global Business Services (GBS) leaders across four international business units. Bridged the gap between enterprise objectives and people strategy by spearheading workforce planning, talent retention frameworks, and engagement initiatives for a highly distributed, hybrid workforce.</li>
+                <li><b>Executive Communications & Culture:</b> Architected the internal communications strategy, producing high-impact quarterly Town Halls that scaled culture across 2,000+ employees. Directed the 'Function Focus' leadership series (Seasons 1 & 2), featuring 8 senior global speakers per season to embed CSR and DEI themes into core organizational touchpoints worldwide.</li>
+                <li><b>Organizational Development Initiatives:</b> Designed and launched two high-impact employee experience programs from the ground up. Established a 48-member, cross-functional Employee Engagement Committee (structured across four specialized teams) and "AkzoNobel Glitz", a 12-member cultural activation unit. Both flagship initiatives earned formal executive recognition for driving workplace synergy.</li>
+                <li><b>Diversity, Equity, and Inclusion (DEI):</b> Championed women's leadership as the Co-Lead of the Women's Inspired Network (WIN). Mobilized 80 core committee members and engaged an 800+ global female workforce through targeted programming, including "Sheroes of AkzoNobel", "Building Blocks for Soon-to-Be Parents", and "Coffee Connects".</li>
+                <li><b>High-Velocity Talent Acquisition:</b> Directed aggressive full-cycle recruitment sprints for critical functions. Successfully closed 107 pivotal positions within a single month by streamlining end-to-end sourcing, behavioral assessment, offer negotiations, onboarding, and exit coordination.</li>
+                <li><b>Employee Relations & Risk Mitigation:</b> Established and spearheaded the specialized Employee Resolution Team to standardize conflict resolution and compliance. Implemented structured, confidential problem-solving frameworks that consistently achieved a 75-80% successful case resolution rate, safeguarding a legally compliant and inclusive workplace culture.</li>
+                <li><b>Change Management & Restructuring:</b> Spearheaded the 'Return to Office' (R2R) transition, successfully aligning workforce operations with new hybrid frameworks. Additionally, orchestrated the sensitive execution of a nationwide restructuring and layoff project, ensuring legal compliance, operational continuity, and highly empathetic offboarding.</li>
+                <li><b>Employer Branding & Digital Storytelling:</b> Ideated and directed high-impact corporate content to scale talent attraction, including producing and directing an official employee spotlight video campaign. <a href="https://www.linkedin.com/posts/akzonobel-gbs_lifeatakzonobel-processtrainee-careerjourney-ugcPost-7252975854941577217-wMo4?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank">View Official Campaign ➔</a></li>
+                <li><a href="https://www.linkedin.com/in/radhika-banginwar" target="_blank">Awards & Executive Recognition:</a> Earned multiple high-level corporate accolades for driving operational excellence, including the 'Dream Team 3.0 Award' and the 'Townhall Recognition', WIN, CSR awards. Acknowledged by senior leadership with dual certificates of excellence at the 'Paint the Future' headquarters and formal boardroom tokens of appreciation.</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Clean, Professional Contact Modal -->
-    <div id="contactModal" class="modal">
+    <div class="modal-overlay impact-modal" id="modal-bajaj" onclick="closeModalOutside(event, 'modal-bajaj')">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="border: none; margin-bottom: 20px;">Let's Connect</h2>
-            <p style="font-weight: bold; color: #66c0f4;">Human Resources Professional</p>
-            <p>Email: name@example.com</p>
-            <p>LinkedIn: linkedin.com/in/yourprofile</p>
-            <p>Phone: +1 555-0100</p>
+            <button class="close-btn" onclick="closeModal('modal-bajaj')">&times;</button>
+            <div class="impact-header">
+                <h2>Bajaj Auto Ltd.</h2>
+                <h3>HR Manager</h3>
+                <span class="modal-date">Sept 2023 - Aug 2024</span>
+            </div>
+            
+            <div class="reflection-block">
+                <p><b>Personal Growth & Executive Scale:</b> Bajaj Auto was the ultimate masterclass in driving mass organizational scale. While establishing international greenfield operations tested my agility, the true crucible of my leadership was spearheading the launch of Bajaj Auto Credit Ltd. (BACL). Architecting the HR infrastructure for an entirely new financial subsidiary and mobilizing a 35-member team to execute 2,000+ national hires fundamentally transformed my capacity for strategic execution. It taught me how to navigate the intense pressure of corporate hyper-growth, proving that successful, rapid expansion relies entirely on building resilient, scalable people frameworks.</p>
+            </div>
+
+            <ul class="impact-list">
+                <li><b>Bajaj Auto Credit Ltd., Enterprise Subsidiary Launch (BACL):</b> Architected the foundational HR and Talent Acquisition strategy for the launch of a new financial services subsidiary. Partnered directly with the VP of Talent Acquisition to establish the organization's first dedicated TA team, directing a 35-member delivery unit to execute a massive national scale-up, successfully onboarding 2,000+ employees across all corporate tiers during extreme hyper-growth.</li>
+                <li><b>High-Volume Talent Acquisition & Sourcing:</b> Executed multidimensional recruitment strategies to fuel BACL's expansion. Managed a central sourcing team and orchestrated complex mass hiring drives, including structured online and offline walk-in interviews processing 500 to 700 candidates per event. Leveraged diverse techniques including bench hiring and rigorous in-person behavioral assessments.</li>
+                <li><b>University Relations & Pipeline Architecture:</b> Directed a comprehensive campus recruiting strategy spanning 20+ Tier-1 and Tier-2 colleges specifically for BACL. Executed large-scale hiring drives to secure management trainees, company trainees, contractual interns, and full-time employees, cultivating a high-potential talent pipeline.</li>
+                <li><b>Employee Engagement & Culture:</b> Spearheaded employee integration and engagement initiatives during the critical BACL scale-up phase, successfully driving and executing the 'People Pulse' program twice to measure organizational health, gather actionable feedback, and elevate workforce satisfaction.</li>
+                <li><b>International Bajaj Auto Plant Setup and Operations:</b> Spearheaded the international workforce architecture for a greenfield manufacturing facility in Manaus, Brazil. Orchestrated local staffing agencies and led a cross-functional project team to establish the plant's inaugural 100-employee workforce from the ground up, executing talent selection and onboarding strictly on time.</li>
+                <li><b>Specialized R&D Talent Acquisition:</b> Partnered with engineering executives to drive highly specialized talent acquisition for the 'Bajaj Freedom', India's first CNG motorcycle. Commanded a 6-member TA squad to successfully secure pivotal engineering profiles, supporting an ecosystem of 450 EV/CNG roles.</li>
+                <li><b>Total Rewards & Compliance Modernization:</b> Streamlined maternity benefits and compliance frameworks, aligning leave workflows with legal mandates to resolve 75+ employee cases efficiently.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay impact-modal" id="modal-salespin" onclick="closeModalOutside(event, 'modal-salespin')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-salespin')">&times;</button>
+            <div class="impact-header">
+                <h2>Salespin</h2>
+                <h3>HR Intern (Founding HR Lead)</h3>
+                <span class="modal-date">May 2023 - Aug 2023</span>
+            </div>
+            
+            <div class="reflection-block">
+                <p><b>Zero to One Leadership & Professional Maturation:</b> Stepping into a high velocity B2B startup as its first HR professional was a defining trial by fire. Without an existing playbook, I was trusted to engineer the company's foundational people operations from an absolute blank slate. Translating academic theory into high stakes corporate execution required taking absolute ownership of everything from legal compliance frameworks to aggressive talent acquisition. Handling sensitive boardroom discussions taught me that uncompromising confidentiality is the absolute bedrock of HR leadership, cementing my role as a deeply trusted strategic partner. This environment rapidly accelerated my executive maturity and proved that true business impact is driven by bold initiative rather than tenure. Earning a Pre-Placement Offer (PPO) directly from the Managing Director served as the ultimate validation of my ability to architect scalable business foundations.</p>
+            </div>
+
+            <ul class="impact-list">
+                <li><b>Zero-to-One HR Infrastructure:</b> Entrusted early in my career to build the company's entire HR backbone from an absolute blank slate. Authored and successfully integrated a comprehensive 21-page HR Policies Handbook, establishing the startup's very first standardized protocols for performance management, leave administration, total rewards, and formal exit procedures.</li>
+                <li><b>Corporate Compliance & Risk Mitigation:</b> Took proactive ownership of legal safeguarding by drafting and executing the organization's foundational Non-Disclosure Agreements (NDAs). Secured B2B trade secrets and sensitive client data, demonstrating an advanced capacity for corporate risk management.</li>
+                <li><b>High-Velocity Startup Recruiting:</b> Single-handedly engineered the end-to-end recruitment lifecycle to fuel a critical 50% organizational growth sprint. Sourced, interviewed, and successfully closed over 30 essential hires across specialized marketing and technical verticals, including Data Research Analysts and Lead Generation Experts.</li>
+                <li><b>Culture Architecture & Employee Retention:</b> Conceptualized and directed comprehensive employee engagement programs, including structured 'Fun Fridays' and the celebration of major national and international milestones. This deliberate focus on culture fostered a highly communicative, low-stress environment that tangibly increased employee retention. By cultivating a vibrant workplace where teams actively preferred in-office collaboration over working from home, daily operational synergy improved dramatically. Leading these cultural shifts fundamentally shaped my professional identity, instilling advanced multitasking capabilities and a confident, risk-taking approach to organizational design.</li>
+                <li><b>Operational Modernization & Onboarding:</b> Transformed unstructured startup processes into highly efficient corporate workflows. Designed highly detailed, role-specific 30-day induction matrices to dramatically accelerate new hire ramp-up times. Furthermore, I digitized workforce tracking by independently deploying the company's first biometric attendance system for over 30 employees.</li>
+                <li><b>Executive Validation (PPO):</b> My ability to rapidly grasp complex systems and implement foundational HR architecture was formally recognized by the Managing Director. Awarded an exclusive Pre-Placement Offer (PPO) for a permanent HR Executive role, serving as direct proof of my high-level execution and tangible business impact.</li>
+                <li><a href="HR_exp_Salespin.pdf" target="_blank">TrailblazeHR Project Report (PDF):</a> Read my comprehensive 100-page operational dossier detailing the exact HR architectures and policies built from scratch.</li>
+                <li><b>Culture & Journey in Action:</b> View the official LinkedIn documentation showcasing our workplace initiatives and my professional growth at Salespin:
+                    <br><br>
+                    <a href="https://www.linkedin.com/posts/radhika-banginwar_salespinfunfriday-employeeengagement-officeculture-activity-7091650995100786688-uqzA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" style="margin-right: 15px; display: inline-block; margin-bottom: 5px;">Fun Fridays Post ➔</a>
+                    <a href="https://www.linkedin.com/posts/radhika-banginwar_hrinternship-smallbusiness-employeeengagement-activity-7081979983203643392-Swdm?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" style="margin-right: 15px; display: inline-block; margin-bottom: 5px;">Engagement Strategies ➔</a>
+                    <a href="https://www.linkedin.com/posts/radhika-banginwar_hrinternship-salespinjourney-professionalgrowth-activity-7101918908000931841-6hHW?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" style="display: inline-block; margin-bottom: 5px;">Salespin Journey ➔</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay impact-modal" id="modal-wings" onclick="closeModalOutside(event, 'modal-wings')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-wings')">&times;</button>
+            <div class="impact-header">
+                <h2>Wings Operations & Technologies Ltd</h2>
+                <h3>HR Coordinator</h3>
+                <span class="modal-date">Jan 2023 - Apr 2023</span>
+            </div>
+
+            <div class="reflection-block">
+                <p><b>Global Kickstart & Academic Integration:</b> Serving as an HR Coordinator on an international project while concurrently pursuing my Master's degree was the true kickstart to my professional journey. It provided a real-time platform to test academic theories against the realities of the corporate world. I quickly learned that while data and structured processes are essential, successful HR is ultimately driven by authentic people relationships. Bringing these ground-level corporate insights back to my university cohort allowed me to perfectly bridge the gap between theoretical models and actual business execution. This early global exposure taught me how to navigate complex workplace dynamics as a fresher, serving as the perfect launchpad for my career.</p>
+            </div>
+
+            <ul class="impact-list">
+                <li><b>Enterprise Client Delivery:</b> Facilitated high-level HR planning and talent delivery pipelines for premier global brands, including Dior and YSL through Stratos Ltd. Coordinated complex interview schedules, executive documentation, and candidate follow-ups to ensure seamless cross-border operations.</li>
+                <li><b>Remote Workforce Management:</b> Supported end-to-end recruitment and employee relations for a highly distributed team of 20+ remote professionals. Maintained smooth daily HR operations while actively prioritizing communication and interpersonal relationship-building across digital channels.</li>
+                <li><b>Bridging Theory and Practice:</b> Applied advanced academic frameworks directly to a live, fast-paced corporate environment. Successfully navigated the nuances of a global workplace as a beginner, gaining invaluable first-hand experience in balancing data-driven HR strategies with empathetic human connection.</li>
+                <li><b>Workflow Optimization & Compliance:</b> Streamlined critical HR documentation and onboarding workflows for new remote hires. Maintained accurate personnel records, employment contracts, and compliance trackers to ensure strict regulatory adherence and operational readiness.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay impact-modal" id="modal-kraken" onclick="closeModalOutside(event, 'modal-kraken')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-kraken')">&times;</button>
+            <div class="impact-header">
+                <h2>Kraken Habitat</h2>
+                <h3>Co-Founder to Strategic HR Advisor</h3>
+                <span class="modal-date">May 2020 - July 2025</span>
+            </div>
+            <ul class="impact-list">
+                <li><b>Pre-Revenue Ideation:</b> Co-founded the venture from the pre-revenue ideation stage. Contributed to early organizational design, team structure, and founding hire planning for a first-of-its-kind urban ecozone encompassing an exotic animal zoo, aquatic center, cafe, and coworking space.</li>
+                <li><b>Talent Ecosystem:</b> Drove end-to-end talent and vendor acquisition. Sourced and onboarded 15+ interns across 5 distinct roles, alongside external vendors and agencies spanning animal care, hospitality, and operations functions.</li>
+                <li><b>Culture-Driven ROI:</b> Architected people operations and team building practices that directly elevated the guest experience. By maintaining high staff retention and cultivating a highly trained hospitality team, I contributed to the ecozone achieving a robust 35% repeat visitor rate and a steady 30% Year-over-Year (YoY) growth in overall footfall.</li>
+                <li><b>Live Ecosystem in Action:</b> View the operational scale, exotic wildlife, and community engagement of our urban ecozone on the <a href="https://www.instagram.com/kraken_habitat_pune?igsh=MTNmcGJ0YjU0YzMwdA==" target="_blank">Kraken Habitat Official Instagram ➔</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay impact-modal" id="modal-vit" onclick="closeModalOutside(event, 'modal-vit')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-vit')">&times;</button>
+            <div class="impact-header">
+                <h2>EDGE'26, VIT Pune</h2>
+                <h3>Mentor - Group Discussion and Interview [HR/Tech]</h3>
+                <span class="modal-date">Feb 2026</span>
+            </div>
+            
+            <div class="reflection-block">
+                <p><b>Talent Ecosystems & Next-Generation Leadership:</b> Transitioning from corporate execution to academic mentorship at EDGE'26 allowed me to actively shape the next generation of elite talent at VIT Pune, consistently recognized among India's top 3 engineering colleges. Coaching thousands of top tier students required distilling complex corporate expectations into actionable, high impact strategies for fresh graduates. This experience reinforced my core belief that early talent identification and structured coaching are the absolute bedrock of any successful tech organization. Guiding these students through intense behavioral and technical simulations deeply refined my own executive coaching abilities, proving that true HR leadership involves continuously lifting others up and building robust talent pipelines for the future.</p>
+            </div>
+
+            <ul class="impact-list">
+                <li><b>Mass Scale Tech Mentorship:</b> Selected as a dedicated HR and Technical Mentor for EDGE'26 at VIT Pune, providing strategic career guidance to a massive cohort of 2,500+ engineering students across Computer Science, AI/ML, and Data Science disciplines.</li>
+                <li><b>Executive Presence & Simulation:</b> Designed and delivered high stress mock interview simulations covering behavioral, organizational, and technical rounds. Provided highly targeted, real time feedback utilizing the Situation-Behavior-Impact (SBI) framework to elevate corporate communication and structured thinking.</li>
+                <li><b>Strategic Brand Positioning:</b> Coached early career candidates on high impact resume articulation, STAR based storytelling, and precise role alignment, reinforcing critical professional differentiators for rigorous corporate evaluations.</li>
+            </ul>
+
+            <div style="margin-top: 35px; margin-bottom: 35px; text-align: center;">
+                <div class="vit-toggle-text" onclick="document.getElementById('vit-circles').classList.toggle('show'); this.classList.toggle('active');">
+                    View Live Mentorship Impact & Testimonials <span class="arrow">▼</span>
+                </div>
+                <div id="vit-circles" class="vit-links-container">
+                    <div class="vit-circle-wrapper">
+                        <a href="https://www.linkedin.com/posts/yash-bhagyawant-4ba84b322_edge26-abhivriddhi-vitpune-ugcPost-7435820141747273728-0pGe?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" class="vit-circle-btn">🗣️</a>
+                        <span style="font-size: 0.85rem; font-weight: 800; margin-top: 10px; color: var(--text-dark);">Student Feedback</span>
+                    </div>
+                    <div class="vit-circle-wrapper">
+                        <a href="https://www.linkedin.com/posts/radhika-banginwar_vitpune-edge26-abhivriddhi-activity-7434939130050113537-sIjv?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" class="vit-circle-btn">🌟</a>
+                        <span style="font-size: 0.85rem; font-weight: 800; margin-top: 10px; color: var(--text-dark);">Mentor Reflections</span>
+                    </div>
+                    <div class="vit-circle-wrapper">
+                        <a href="https://www.linkedin.com/posts/radhika-banginwar_edge26-placementpreparation-mockinterview-activity-7434654675053834240-83PX?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" class="vit-circle-btn">📸</a>
+                        <span style="font-size: 0.85rem; font-weight: 800; margin-top: 10px; color: var(--text-dark);">Live Sessions</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.6rem; color: var(--accent-blue); font-weight: 800; margin-bottom: 20px;">Core Teachings & Executive Mentorship Outcomes</h3>
+            <ul class="impact-list">
+                <li><b>Psychological Reconditioning (The Peer Equivalency):</b> Dismantled the anxious fresher complex. Coached candidates to approach senior executives not as intimidating superiors, but as collaborative business peers. Instilled the exact confidence required to hold their ground in multi-generational boardrooms with razor sharp, analytical composure.</li>
+                <li><b>Behavioral Mechanics & Non-Verbal Authority:</b> Corrected unconscious anxiety cues that actively sabotage early career talent. Mandated strict posture alignment and contained hand gestures, specifically teaching that over-expressive movements project a lack of executive control. Assigned rigorous mirror and audio self-auditing exercises to solidify authentic presence.</li>
+                <li><b>Linguistic Precision & Vocal Impact:</b> Eradicated flowery, verb-heavy academic jargon. Demanded highly concise, data-backed statements. Taught candidates a critical corporate reality: strong words mean absolutely nothing without physical vocal projection. Directly tied their speaking volume to their perceived passion and workplace authority.</li>
+                <li><b>Commercial Storytelling & The Six-Second Rule:</b> Transformed how technical talent pitches their personal brand. Shifted their focus entirely from reciting academic grades to demonstrating direct business ROI. Trained cohorts to optimize their narratives for the strict six-second resume scan, ensuring immediate alignment with global stakeholder expectations.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-lightbox" onclick="closeModalOutside(event, 'modal-lightbox')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-lightbox')">&times;</button>
+            <img id="lightbox-img" src="" alt="Gallery View">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-voice" onclick="closeModalOutside(event, 'modal-voice')">
+        <div class="modal-content" style="max-width: 650px; text-align: center; padding: 70px 50px;">
+            <button class="close-btn" onclick="closeModal('modal-voice')">&times;</button>
+            <span style="font-size: 3.5rem; margin-bottom: 25px; display: block;">🎙️</span>
+            <p style="font-size: 1.4rem; font-style: italic; line-height: 1.7; text-align: left; border-left: 5px solid var(--accent-blue); padding-left: 25px;">"I teach students that technical skills are a baseline, but <b>mindset</b> is the differentiator. You must hold the room with the welcoming energy of a peer, while maintaining the sharp filter of a professional."</p>
+            <p style="margin-top: 40px; font-weight: 800; color: var(--accent-blue);">RADHIKA BANGINWAR</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-awards" onclick="closeModalOutside(event, 'modal-awards')">
+        <div class="modal-content" style="max-width: 650px;">
+            <button class="close-btn" onclick="closeModal('modal-awards')">&times;</button>
+            <h2 style="font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; text-align: center; border: none;">Recognition & Awards</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_gratitude-dreamteam3-recognitionmatters-activity-7298378383606910976-7sPj" target="_blank" style="background: rgba(255,255,255,0.05); padding: 22px; border-radius: 20px; font-weight: 700; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 15px; border: 1px solid var(--glass-border); transition: 0.3s;">
+                    <span style="font-size: 2rem;">🏆</span> <div><b>Dream Team 3.0 Award</b><br><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 400;">AkzoNobel Excellence Recognition</span></div>
+                </a>
+                
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_recognition-leadership-csr-activity-7285673733174808578-cMuj" target="_blank" style="background: rgba(255,255,255,0.05); padding: 22px; border-radius: 20px; font-weight: 700; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 15px; border: 1px solid var(--glass-border); transition: 0.3s;">
+                    <span style="font-size: 2rem;">🌟</span> <div><b>CSR & Leadership Excellence</b><br><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 400;">Community Impact Leadership</span></div>
+                </a>
+                
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_vitpune-edge26-abhivriddhi-activity-7434939130050113537-sIjv" target="_blank" style="background: rgba(255,255,255,0.05); padding: 22px; border-radius: 20px; font-weight: 700; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 15px; border: 1px solid var(--glass-border); transition: 0.3s;">
+                    <span style="font-size: 2rem;">🎓</span> <div><b>VIT Pune Mentor Accolade</b><br><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 400;">Career Development Impact</span></div>
+                </a>
+
+                <a href="https://www.linkedin.com/posts/radhika-banginwar_grateful-recognition-townhall2024-activity-7250575844681666560-x3xf?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtXydYBhkFhkGsgHClmDGBUWQQs087nMjI" target="_blank" style="background: rgba(255,255,255,0.05); padding: 22px; border-radius: 20px; font-weight: 700; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 15px; border: 1px solid var(--glass-border); transition: 0.3s;">
+                    <span style="font-size: 2rem;">🏅</span> <div><b>Townhall 2024 Recognition</b><br><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 400;">Outstanding Performance & Impact</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-skills" onclick="closeModalOutside(event, 'modal-skills')">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-skills')">&times;</button>
+            <h2 style="font-size: 2.2rem; margin-bottom: 30px; font-weight: 800; border: none;">Core Competencies & Expertise</h2>
+            
+            <div class="skill-category">
+                <h4>HR Strategy & Partnering</h4>
+                <p style="font-size: 1.1rem; line-height: 1.6;">HR Business Partnering, Global Workforce Planning, Employee Relations, Stakeholder Management, Change Management, Organizational Development.</p>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Talent & People Operations</h4>
+                <p style="font-size: 1.1rem; line-height: 1.6;">Global Talent Acquisition, Full-Cycle Recruitment, Campus Hiring, Employee Engagement, DEI & CSR, Labor Law Compliance, Compensation & Benefits.</p>
+            </div>
+
+            <div class="skill-category">
+                <h4>L&D & Executive Coaching</h4>
+                <p style="font-size: 1.1rem; line-height: 1.6;">Learning & Development, Executive Presence Coaching, Performance Management, Mentoring Frameworks.</p>
+            </div>
+
+            <div class="skill-category">
+                <h4>HR Systems & Technology</h4>
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    <b>Primary Systems:</b> SAP CRM, LinkedIn Recruiter, Advanced Excel, HRIS, Workday (Exposure).<br>
+                    <b>Platforms:</b> Internshala, Indeed, Naukri, Google Workspace.
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <h4>Agentic AI & Workflow Integration</h4>
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    <b>Conversational AI:</b> ChatGPT, Gemini, Claude, Perplexity.<br>
+                    <b>Content & Data Synthesis:</b> Advanced application of NotebookLLM, Gamma, Canva, eraser.io, mermaid AI, Adobe Animate (vector 2D), Adobe After Effects (motion graphics/VFX), Character Animator (live, webcam-based animation), 15five, and more.<br>
+                    <i style="color: var(--text-light); display: block; margin-top: 8px;">Continuously piloting emerging autonomous agents to future-proof organizational development.</i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-contact" onclick="closeModalOutside(event, 'modal-contact')">
+        <div class="modal-content" style="max-width: 500px; text-align: center; padding: 60px 40px;">
+            <button class="close-btn" onclick="closeModal('modal-contact')">&times;</button>
+            <h2 style="font-family: 'Outfit'; font-size: 2.2rem; margin-bottom: 35px; font-weight: 800; border: none;">Let's Connect</h2>
+            <div class="connect-links">
+                <a href="mailto:radhikabanginwar23@gmail.com" class="connect-option">
+                    <span class="connect-title">Email Me</span>
+                    <span class="connect-sub">radhikabanginwar23@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/radhika-banginwar" target="_blank" class="connect-option">
+                    <span class="connect-title">LinkedIn</span>
+                    <span class="connect-sub">linkedin.com/in/radhika-banginwar</span>
+                </a>
+                <a href="tel:+13026073330" class="connect-option">
+                    <span class="connect-title">Contact Info</span>
+                    <span class="connect-sub">+1 (302) 607-3330</span>
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
-        function openModal() {
-            document.getElementById('contactModal').style.display = 'flex';
+        // Smooth scrolling to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
+        // Start numbers counting up once
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+            counters.forEach(counter => {
+                counter.innerText = '0';
+                const target = +counter.getAttribute('data-target');
+                const updateCounter = () => {
+                    const c = +counter.innerText;
+                    const increment = target / 85;
+                    if (c < target) { counter.innerText = `${Math.ceil(c + increment)}`; setTimeout(updateCounter, 20); }
+                    else { counter.innerText = target + '+'; }
+                };
+                updateCounter();
+            });
         }
+        window.onload = startCounters;
 
-        function togglePerspective() {
-            alert('Perspective toggled between Human Empathy and Analytical Strategy.');
-        }
+        // Dynamic Navigation Highlight based on scrolling
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('.scroll-section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        // Close modal if user clicks outside the box
-        window.onclick = function(event) {
-            let modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(current)) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        let strategyMode = false;
+        function toggleLens() {
+            strategyMode = !strategyMode;
+            const labelS = document.getElementById('labelStrategy');
+            const labelE = document.getElementById('labelEmpathy');
+            
+            const mainContent = document.getElementById('main-content');
+            
+            if(strategyMode) {
+                mainContent.classList.add('toggle-active');
+                labelS.classList.add('lens-active'); labelE.classList.remove('lens-active');
+                document.querySelectorAll('.highlight-strategy').forEach(el => el.classList.add('active-strategy'));
+                document.querySelectorAll('.highlight-empathy').forEach(el => el.classList.remove('active-empathy'));
+            } else {
+                mainContent.classList.remove('toggle-active');
+                labelS.classList.remove('lens-active'); labelE.classList.add('lens-active');
+                document.querySelectorAll('.highlight-strategy').forEach(el => el.classList.remove('active-strategy'));
+                document.querySelectorAll('.highlight-empathy').forEach(el => el.classList.add('active-empathy'));
             }
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow='auto'; }
+        function closeModalOutside(e, id) { if(e.target.id === id) closeModal(id); }
+
+        function openLightbox(element) {
+            const activeImageSrc = element.querySelector('img').src;
+            document.getElementById('lightbox-img').src = activeImageSrc;
+            openModal('modal-lightbox');
         }
     </script>
 </body>
